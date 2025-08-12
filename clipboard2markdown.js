@@ -104,7 +104,17 @@
 
         return prefix + content;
       }
-    }
+    },
+    // https://github.com/euangoddard/clipboard2markdown/issues/15
+    {
+      filter: function (node) {
+        // TODO: check other font-weights
+        return node.style.fontWeight && (node.style.fontWeight > 500);
+      },
+      replacement: function (content) {
+        return '**' + content + '**';
+      }
+    },
   ];
 
   // http://pandoc.org/README.html#smart-punctuation
